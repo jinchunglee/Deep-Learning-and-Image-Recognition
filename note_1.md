@@ -203,3 +203,23 @@ cv2.imshow('image', img)
 cv2.imshow('canny', canny)
 cv2.imshow('imageContours', imgContours)
 cv2.waitKey(0)
+
+
+
+
+## 人臉辨識
+import cv2
+
+img = cv2.imread('image/members.png')
+grey = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+facecascade = cv2.CascadeClassifier('face_detect.xml')
+facerect = facecascade.detectMultiScale(grey, 1.1, 4)
+
+print(len(facerect))
+
+for (x, y, w, h) in facerect:
+    cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 3)
+
+cv2.imshow('image', img)
+#cv2.imshow('grey', grey)
+cv2.waitKey(0)
